@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,18 +83,16 @@ public class RequestParamController {
         return"ok";
     }
 
-    @ResponseBody
     @RequestMapping("/model-attribute-v2")
-    public String modelAttributeV2(@ModelAttribute HelloData helloData) {
+    public String modelAttributeV2(@ModelAttribute(name = "TEST") HelloData helloData) {
         log.info("helloData = {}", helloData);
         return"ok";
     }
 
-    @ResponseBody
     @RequestMapping("/model-attribute-v3")
     public String modelAttributeV3(HelloData helloData) {
         log.info("helloData = {}", helloData);
-        return"ok";
+        return "ok";
     }
 
 }
