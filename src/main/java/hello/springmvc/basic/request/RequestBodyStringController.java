@@ -61,6 +61,6 @@ public class RequestBodyStringController {
     @PostMapping("/request-body-string-v5")
     public String requestBodyStringV4(@RequestBody String messageBody) throws IOException {
         log.info("messageBody = {}", messageBody);
-        return "ok"; // @ResponseBody가 있기에 응답 바디에 팍 넣어서 반환한다.
+        return "ok";
     }
 }
