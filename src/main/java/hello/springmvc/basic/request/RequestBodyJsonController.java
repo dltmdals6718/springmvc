@@ -66,8 +66,8 @@ public class RequestBodyJsonController {
 
     @ResponseBody
     @PostMapping("/request-body-json-v5")
-    public HelloData requestBodyJsonV5(@RequestBody HelloData data){
-        return data; // HelloData 객체가 http메시지 컨버터를 통해 JSON으로 바뀌고 이 JSON이 응답으로 나간다.
+    public HelloData requestBodyJsonV5(@RequestBody HelloData data){ // 요청: 메시지 컨버터를 통해 JSON -> HelloData
+        return data; // 응답: HelloData 객체가 http메시지 컨버터를 통해 JSON으로 바뀌고 이 JSON이 응답으로 나간다.
         // JSON -> 객체 -> JSON
     }
 }
