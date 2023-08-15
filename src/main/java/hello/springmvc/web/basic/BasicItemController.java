@@ -67,11 +67,18 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("add")
+    //@PostMapping("add")
     public String addItemV4(Item itemName) {
         itemRepository.save(itemName);
 //        @ModelAttribute 생략도 가능하다. 객체의 경우 @ModelAttribute가, 단순 타입인 경우 @RequestParam 적용
         return "basic/item";
+    }
+
+    @PostMapping("add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        //return "basic/item"; 새로고침시 POST 요청을 또 보냄.
+        return "redirect:/basic/items/" + item.getId(); // PRG 적용
     }
 
     @GetMapping("/{itemId}/edit")
