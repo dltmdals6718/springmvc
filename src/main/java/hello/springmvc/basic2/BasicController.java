@@ -133,4 +133,10 @@ public class BasicController {
         return "basic2/condition";
     }
 
+    @GetMapping("/comments")
+    public String comments(Model model) {
+        model.addAttribute("data", "Sring!");
+        return "basic2/comments";
+    }
+
 }
