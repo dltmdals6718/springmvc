@@ -139,4 +139,10 @@ public class BasicController {
         return "basic2/comments";
     }
 
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic2/block";
+    }
+
 }
