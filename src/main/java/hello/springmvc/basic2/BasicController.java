@@ -108,5 +108,10 @@ public class BasicController {
         return "basic2/operation";
     }
 
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "basic2/attribute";
+    }
+
 
 }
