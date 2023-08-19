@@ -1,7 +1,7 @@
 package hello.springmvc.web.basic;
 
 import hello.springmvc.domain.item.Item;
-import hello.springmvc.domain.item.ItemRepository;
+import hello.springmvc.domain.item.ItemRepository2;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/basic/items")
 public class BasicItemController {
-    private final ItemRepository itemRepository;
+    private final ItemRepository2 itemRepository;
 
     @GetMapping
     public String items(Model model) {
