@@ -1,4 +1,4 @@
-package hello.springmvc.itemservice.domain.item;
+package hello.springmvc.itemservice3.domain.item;
 
 public enum ItemType {
 

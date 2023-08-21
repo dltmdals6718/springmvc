@@ -1,9 +1,9 @@
-package hello.springmvc.itemservice.web.form;
+package hello.springmvc.itemservice3.web.form;
 
-import hello.springmvc.itemservice.domain.item.DeliveryCode;
-import hello.springmvc.itemservice.domain.item.Item;
-import hello.springmvc.itemservice.domain.item.ItemRepository;
-import hello.springmvc.itemservice.domain.item.ItemType;
+import hello.springmvc.itemservice3.domain.item.DeliveryCode;
+import hello.springmvc.itemservice3.domain.item.Item;
+import hello.springmvc.itemservice3.domain.item.ItemRepository;
+import hello.springmvc.itemservice3.domain.item.ItemType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Controller
+//@Controller
 @RequestMapping("/form/items")
 @RequiredArgsConstructor
 @Slf4j

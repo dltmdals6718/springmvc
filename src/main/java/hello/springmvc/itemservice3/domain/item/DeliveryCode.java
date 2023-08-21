@@ -1,4 +1,4 @@
-package hello.springmvc.itemservice.domain.item;
+package hello.springmvc.itemservice3.domain.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
  * NORMAL: 일반 배송
  * SLOW: 느린 배송
  */
-@Data
+//@Data
 @AllArgsConstructor
 public class DeliveryCode {
 
