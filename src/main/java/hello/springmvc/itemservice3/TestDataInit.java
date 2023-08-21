@@ -1,13 +1,12 @@
-package hello.springmvc.itemservice;
+package hello.springmvc.itemservice3;
 
-import hello.springmvc.itemservice.domain.item.Item;
-import hello.springmvc.itemservice.domain.item.ItemRepository;
+import hello.springmvc.itemservice3.domain.item.Item;
+import hello.springmvc.itemservice3.domain.item.ItemRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-
-@Component
+//@Component
 @RequiredArgsConstructor
 public class TestDataInit {
 
