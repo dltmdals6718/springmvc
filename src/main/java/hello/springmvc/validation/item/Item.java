@@ -1,12 +1,8 @@
-package hello.springmvc.itemservice.domain.item;
+package hello.springmvc.validation.item;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-//@Data
-@Getter
-@Setter
+@Data
 public class Item {
 
     private Long id;
