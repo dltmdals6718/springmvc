@@ -25,7 +25,7 @@ import java.util.Map;
 public class ValidationItemControllerV2 {
 
     private final ItemRepository itemRepository;
-
+    private final ItemValidator itemValidator;
     @GetMapping
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
@@ -161,26 +161,9 @@ public class ValidationItemControllerV2 {
     @PostMapping("/add")
     public String addItemV4(@ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
-        log.info("objectName = {}", bindingResult.getObjectName());
-        log.info("target = {}", bindingResult.getTarget());
 
-        //검증 로직
-        if(!StringUtils.hasText(item.getItemName())) {
-            bindingResult.rejectValue("itemName", "required");
-        }
-        if(item.getPrice()==null||item.getPrice()<1000||item.getPrice()>10000) {
-            bindingResult.rejectValue("price", "range", new Object[]{1000, 10000}, null);
-        }
-        if(item.getQuantity()==null||item.getQuantity()>100) {
-            bindingResult.rejectValue("quantity", "max", new Object[]{100}, null);
-        }
-
-        //특정 필드가 아닌 복합 검증
-        if(item.getPrice()!=null&&item.getQuantity()!=null) {
-            int resultPrice = item.getPrice()*item.getQuantity();
-            if(resultPrice<10000) {
-                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
-            }
+        if(itemValidator.supports(item.getClass())) {
+            itemValidator.validate(item, bindingResult);
         }
 
         //검증에 실패하면 다시 입력 폼으로
