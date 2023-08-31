@@ -18,7 +18,6 @@ public class ItemValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Item item = (Item)target;
-
         //검증 로직
         // errors에도 rejectValue가 있다.
         if(!StringUtils.hasText(item.getItemName())) {
