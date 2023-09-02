@@ -1,4 +1,4 @@
-package hello.springmvc.validation.item;
+package hello.springmvc.login.domain.item;
 
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//@Repository
+@Repository
 public class ItemRepository {
 
     private static final Map<Long, Item> store = new HashMap<>(); //static
