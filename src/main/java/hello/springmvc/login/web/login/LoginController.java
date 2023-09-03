@@ -2,6 +2,8 @@ package hello.springmvc.login.web.login;
 
 import hello.springmvc.login.domain.login.LoginService;
 import hello.springmvc.login.domain.member.Member;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +26,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult) {
+    public String login(@Valid @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletResponse response) {
         if(bindingResult.hasErrors()) {
             return "login/loginForm";
         }
@@ -36,6 +38,9 @@ public class LoginController {
             return "login/loginForm";
         }
 
+        //쿠키에 시간을 정해주지 않으면 세션 쿠키
+        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getId()));
+        response.addCookie(idCookie);
         return "redirect:/";
     }
 }
