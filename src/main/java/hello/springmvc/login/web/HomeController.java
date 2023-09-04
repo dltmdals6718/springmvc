@@ -2,7 +2,9 @@ package hello.springmvc.login.web;
 
 import hello.springmvc.login.domain.member.Member;
 import hello.springmvc.login.domain.member.MemberRepository;
+import hello.springmvc.login.web.session.SessionManager;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,13 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     private final MemberRepository memberRepository;
+    private final SessionManager sessionManager;
 
     //@GetMapping("/")
     public String home() {
         return "home";
     }
 
-    @GetMapping("/")
+    //@GetMapping("/")
     public String homeLogin(@CookieValue(value = "memberId", required = false) Long memberId, Model model) {
         if(memberId==null) {
             return "home";
@@ -40,7 +43,20 @@ public class HomeController {
         }
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/")
+    public String homeLoginV2(HttpServletRequest request, Model model) {
+
+        //세션 관리자에 저장된 회원 정보 조회
+        Member member = (Member)sessionManager.getSession(request);
+        if(member==null)
+            return "home";
+
+        model.addAttribute("member", member);
+        return "loginHome";
+
+    }
+
+    //@PostMapping("/logout")
     public String logout(HttpServletResponse response) {
         Cookie cookie = new Cookie("memberId", null);
         cookie.setMaxAge(0);
