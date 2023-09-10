@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Slf4j
-@Controller
+//@Controller
 @RequiredArgsConstructor
 public class HomeController {
 

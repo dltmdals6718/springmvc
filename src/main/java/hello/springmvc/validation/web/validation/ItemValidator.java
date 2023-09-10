@@ -6,10 +6,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-//@Component
+@Component
 public class ItemValidator implements Validator {
 
-    @Override
+    @Override 
     public boolean supports(Class<?> clazz) {
         return Item.class.isAssignableFrom(clazz);
         //return Item.class == clazz; 도 가능하나 위의 코드는 자식까지 커버가된다. item == subItem
