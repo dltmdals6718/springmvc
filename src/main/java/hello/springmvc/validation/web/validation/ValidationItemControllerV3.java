@@ -2,6 +2,8 @@ package hello.springmvc.validation.web.validation;
 
 import hello.springmvc.validation.item.Item;
 import hello.springmvc.validation.item.ItemRepository;
+import hello.springmvc.validation.item.SaveCheck;
+import hello.springmvc.validation.item.UpdateCheck;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -42,7 +44,7 @@ public class ValidationItemControllerV3 {
     }
 
     @PostMapping("/add")
-    public String addItem(@Validated @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    public String addItem(@Validated(value= SaveCheck.class) @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 
         if(item.getPrice()!= null && item.getQuantity() != null) {
             int resultPrice = item.getPrice() * item.getQuantity();
@@ -72,7 +74,7 @@ public class ValidationItemControllerV3 {
     }
 
     @PostMapping("/{itemId}/edit")
-    public String edit(@PathVariable Long itemId, @Validated @ModelAttribute Item item, BindingResult bindingResult) {
+    public String edit(@PathVariable Long itemId, @Validated(UpdateCheck.class) @ModelAttribute Item item, BindingResult bindingResult) {
 
         if(item.getPrice()!= null && item.getQuantity() != null) {
             int resultPrice = item.getPrice() * item.getQuantity();
