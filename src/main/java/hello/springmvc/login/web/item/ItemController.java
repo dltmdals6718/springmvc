@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Slf4j
-//@Controller
+@Controller
 @RequestMapping("/items")
 @RequiredArgsConstructor
 public class ItemController {

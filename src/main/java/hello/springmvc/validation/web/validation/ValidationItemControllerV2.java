@@ -26,8 +26,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ValidationItemControllerV2 {
 
-    private final ItemRepository itemRepository;
-    private final ItemValidator itemValidator;
+    private  ItemRepository itemRepository;
+    private  ItemValidator itemValidator;
 
     @InitBinder("item")
     public void init(WebDataBinder dataBinder) {

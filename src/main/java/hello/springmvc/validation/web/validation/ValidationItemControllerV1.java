@@ -20,7 +20,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ValidationItemControllerV1 {
 
-    private final ItemRepository itemRepository;
+    private  ItemRepository itemRepository;
 
     @GetMapping
     public String items(Model model) {

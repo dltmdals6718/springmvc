@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Slf4j
-//@Controller
+@Controller
 @RequiredArgsConstructor
 public class HomeController {
 
@@ -30,7 +30,7 @@ public class HomeController {
         return "home";
     }
 
-    //@GetMapping("/")
+    // @GetMapping("/")
     public String homeLogin(@CookieValue(value = "memberId", required = false) Long memberId, Model model) {
         if(memberId==null) {
             return "home";

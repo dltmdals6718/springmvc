@@ -11,11 +11,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@Controller
-@RequiredArgsConstructor
-@RequestMapping("/basic/items")
+//@Controller
+//@RequiredArgsConstructor
+//@RequestMapping("/basic/items")
 public class BasicItemController {
-    private final ItemRepository2 itemRepository;
+    private ItemRepository2 itemRepository;
 
     @GetMapping
     public String items(Model model) {
