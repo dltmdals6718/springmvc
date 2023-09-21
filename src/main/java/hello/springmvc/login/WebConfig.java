@@ -32,6 +32,11 @@ public class WebConfig implements WebMvcConfigurer {
                         "/logout", "/css/**", "/*.ico", "/error");
     }
 
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new LoginMemberArgumentResolver());
+    }
+
     //@Bean
     public FilterRegistrationBean logFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();

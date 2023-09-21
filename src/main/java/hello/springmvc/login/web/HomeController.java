@@ -2,6 +2,7 @@ package hello.springmvc.login.web;
 
 import hello.springmvc.login.domain.member.Member;
 import hello.springmvc.login.domain.member.MemberRepository;
+import hello.springmvc.login.web.argumentresolver.Login;
 import hello.springmvc.login.web.session.SessionConst;
 import hello.springmvc.login.web.session.SessionManager;
 import jakarta.servlet.http.Cookie;
@@ -74,8 +75,19 @@ public class HomeController {
         return "loginHome";
     }
 
-    @GetMapping("/")
+    //@GetMapping("/")
     public String homeLoginV4(@SessionAttribute(name=SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) {
+
+        if(loginMember==null)
+            return "home";
+
+        model.addAttribute("member", loginMember);
+        return "loginHome";
+
+    }
+
+    @GetMapping("/")
+    public String homeLoginV4ArgumentResolver(@Login Member loginMember, Model model) {
 
         if(loginMember==null)
             return "home";
