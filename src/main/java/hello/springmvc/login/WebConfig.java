@@ -1,10 +1,11 @@
 package hello.springmvc.login;
 
+import hello.springmvc.exception.filter.LogFilter;
 import hello.springmvc.login.web.argumentresolver.LoginMemberArgumentResolver;
-import hello.springmvc.login.web.filter.LogFilter;
 import hello.springmvc.login.web.filter.LoginCheckFilter;
 import hello.springmvc.login.web.intercepter.LogIntercepter;
 import hello.springmvc.login.web.intercepter.LoginCheckIntercepter;
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -20,16 +21,17 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogIntercepter())
-                .order(1)
-                .addPathPatterns("/**") // 서블릿과 달리 **이라고 해줘야함 - 하위는 전부다라는 뜻
-                .excludePathPatterns("/css/**", "*.ico", "/error");
+//        registry.addInterceptor(new LogIntercepter())
+//                .order(1)
+//                .addPathPatterns("/**") // 서블릿과 달리 **이라고 해줘야함 - 하위는 전부다라는 뜻
+//                .excludePathPatterns("/css/**", "*.ico", "/error");
 
-        registry.addInterceptor(new LoginCheckIntercepter())
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/members/add", "/login",
-                        "/logout", "/css/**", "/*.ico", "/error");
+        //에러 페이지를 위해 잠시 꺼둠(안끄면 로그인 페이지로 리다이렉트시켜버림)
+//        registry.addInterceptor(new LoginCheckIntercepter())
+//                .order(2)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/", "/members/add", "/login",
+//                        "/logout", "/css/**", "/*.ico", "/error");
     }
 
     @Override
@@ -37,12 +39,13 @@ public class WebConfig implements WebMvcConfigurer {
         resolvers.add(new LoginMemberArgumentResolver());
     }
 
-    //@Bean
+    @Bean
     public FilterRegistrationBean logFilter() {
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new LogFilter());
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
         return filterRegistrationBean;
     }
 }
